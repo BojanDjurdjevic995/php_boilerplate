@@ -37,6 +37,13 @@ class Request
 
     public function __debugInfo()
     {
-        return $this->__get();
+        $info = [];
+        if (self::isMethod('POST'))
+            foreach ($_POST as $key => $post)
+                $info[$key] = $post;
+            else
+                foreach ($_GET as $key2 => $get)
+                    $info[$key2] = $get;
+        return $info;
     }
 }
