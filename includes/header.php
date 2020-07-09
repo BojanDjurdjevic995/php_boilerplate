@@ -1,0 +1,42 @@
+<?php
+$page = explode('/', $_SERVER['SCRIPT_NAME'])[3];
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title><?= $title ?: 'Title' ?></title>
+
+<!--    <link rel="apple-touch-icon" sizes="180x180" href="#">-->
+<!--    <link rel="icon" type="image/png" sizes="32x32" href="#">-->
+<!--    <link rel="icon" type="image/png" sizes="16x16" href="#">-->
+
+    <link rel="stylesheet" href="<?= asset('css/datatables.min.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/jquery-confirm.min.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/main.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/font-awesome.min.css') ?>">
+
+    <meta name="page" content="<?= explode('.', $page)[0] ?>">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="<?= BASE_URL ?>">Panel</a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link statsSubMenuActive" href="javascript:void(0)">Stats <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link settingsSubMenuActive" href="javascript:void(0)">Settings <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>

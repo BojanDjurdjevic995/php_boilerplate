@@ -1,71 +1,34 @@
 <?php
 namespace App\Models;
 
+use PDO;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\MySqlConnection;
 
 class News extends Model
 {
-    protected static $table = 'news';
-    public $data = ['visibility' => 1, 'created_at' => NULL, 'updated_at' => NULL];
+    protected $table = 'news';
 
-    /**
-     * @param null $varName
-     * @return |null
-     */
-    public function __get($varName = NULL)
+    public function getConnection()
     {
-        if ($varName) return (isset($this->data[$varName]) ? $this->data[$varName] : NULL);
-        else return $this->data;
+        $DB         = include ROOT_PATH . 'config/database.php';
+        $db         = $DB['connections']['mysql']['database'];
+        $user       = $DB['connections']['mysql']['username'];
+        $pass       = $DB['connections']['mysql']['password'];
+        $charset    = $DB['connections']['mysql']['charset'];
+        $pdo        = new PDO('mysql:host=localhost;dbname='.$db.';charset=' . $charset, $user, $pass);
+
+        $conn = new MySqlConnection($pdo, env('DB_DATABASE'), '', $DB['connections']['mysql']);
+        return $conn;
     }
 
-    /**
-     * @param $name
-     * @param $value
-     */
-    public function __set($name, $value)
+    public function children()
     {
-        $this->data[$name] = $value;
+        return $this->hasMany(NewsLang::class, 'news_id', 'id');
     }
 
-    /**
-     * This method adds new record to database
-     * @return bool
-     */
-    public function save()
+    public function gallery()
     {
-        $columns    = array();
-        $value      = array();
-        $where      = array();
-        if (isset($this->data['id']))
-        {
-            $where[]    = 'id';
-            foreach ($this->data as $key => $data)
-            {
-                if ($key != 'id') {
-                    if ($key == 'updated_at') {
-                        $this->data['updated_at'] = timeStamp();
-                        $data = timeStamp();
-                    }
-
-                    $columns[]  = $key;
-                    $value[]    = $data;
-                } else
-                    $where[]    = $data;
-            }
-            return self::update($columns, $value, $where);
-        } else {
-            foreach ($this->data as $key => $data)
-            {
-                if ($key == 'created_at' || $key == 'updated_at') {
-                    $this->data['created_at'] = timeStamp();
-                    $this->data['updated_at'] = timeStamp();
-                    $data = timeStamp();
-                }
-                $columns[]  = $key;
-                $value[]    = $data;
-            }
-            if ( $this->data['id'] = self::insert($columns, $value))
-                return true;
-            return false;
-        }
+        return $this->hasMany(Gallery::class, 'news_id', 'id');
     }
 }
