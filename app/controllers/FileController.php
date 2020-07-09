@@ -22,7 +22,7 @@ class FileController
      * Return size of upload file
      * @return integer
      */
-    public function size()
+    public function getSize()
     {
         return ceil($_FILES[$this->file]['size'] / 1024);
     }
