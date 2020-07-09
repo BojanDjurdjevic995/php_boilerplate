@@ -13,7 +13,7 @@ class FileController
      * Return name of upload file
      * @return string
      */
-    public function name()
+    public function getName()
     {
         return $_FILES[$this->file]['name'];
     }
@@ -31,7 +31,7 @@ class FileController
      * Return type of upload file
      * @return string
      */
-    public function type()
+    public function getType()
     {
         return $_FILES[$this->file]['type'];
     }
@@ -40,7 +40,7 @@ class FileController
      * Return tmp name of upload file
      * @return string
      */
-    public function tmpName()
+    public function getTmpName()
     {
         return $_FILES[$this->file]['tmp_name'];
     }
@@ -49,9 +49,9 @@ class FileController
      * Return file extension of upload file
      * @return string
      */
-    public function extension()
+    public function getExtension()
     {
-        $fileNameCmps = explode(".", $this->name());
+        $fileNameCmps = explode(".", $this->getName());
         return strtolower(end($fileNameCmps));
     }
 
