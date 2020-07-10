@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Controllers;
+
 class Session
 {
     /**
@@ -31,15 +33,19 @@ class Session
      */
     public static function get($session)
     {
-        return $_SESSION[$session];
+        return isset($_SESSION[$session]) ? $_SESSION[$session] : NULL;
     }
 
     /**
      * Method delete session
      * @param $session
+     * @return bool
      */
     public static function destroy($session)
     {
-        unset($_SESSION[$session]);
+        if (isset($_SESSION[$session]))
+            unset($_SESSION[$session]);
+
+        return true;
     }
 }

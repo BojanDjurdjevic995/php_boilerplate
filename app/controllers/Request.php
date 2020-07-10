@@ -6,14 +6,15 @@ class Request
 
     public function __get($varName = false)
     {
+        $this->data = (object) [];
         if (self::isMethod('POST'))
             foreach ($_POST as $key => $post)
-                $this->data[$key] = $post;
+                $this->data->{$key} = json_decode(json_encode($post));
         else
             foreach ($_GET as $key => $get)
-                $this->data[$key] = $get;
+                $this->data->{$key} = json_decode(json_encode($get));
 
-        return $varName ? (isset($this->data[$varName]) ? $this->data[$varName] : NULL) : ($this->data);
+        return $varName ? (isset($this->data->{$varName}) ? $this->data->{$varName} : NULL) : ($this->data);
     }
 
     /**
