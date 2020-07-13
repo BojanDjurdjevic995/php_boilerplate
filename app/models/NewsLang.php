@@ -2,12 +2,12 @@
 namespace App\Models;
 
 use App\Traits\ConnectionHelper;
-use App\Traits\TextTrait;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class NewsLang extends Model
 {
-    use TextTrait, ConnectionHelper;
+    use ConnectionHelper;
 
     protected $table = 'news_langs';
 
@@ -27,6 +27,6 @@ class NewsLang extends Model
      */
     public function getTrimContentAttribute()
     {
-        return $this->trim_text(strip_tags($this->content), 20);
+        return Str::limit(strip_tags($this->content), 20);
     }
 }

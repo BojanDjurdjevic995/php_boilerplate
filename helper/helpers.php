@@ -26,27 +26,3 @@
         $baseUrl = $actual_link . $requestUri;
         return $baseUrl . $item;
     }
-
-    function readAndWriteEnv($key = false, $value = false)
-    {
-        $envArray = [];
-        $env = explode("\n", file_get_contents(ROOT_PATH . '.env'));
-        $env = array_filter($env);
-        foreach ($env as  $item) {
-            $temp = explode('=', $item);
-            $envArray[$temp[0]] = isset($temp[1]) ? $temp[1] : '';
-        }
-
-        if ($key !== false && $key !== 0 && $value === false && $value === 0)
-            return $envArray[$key];
-        else if ($key !== false && $key !== 0 && $value !== false && $value !== 0)
-        {
-            file_put_contents(ROOT_PATH . '.env', '');
-            $envArray[$key] = $value;
-            foreach ($envArray as $envKey => $envValue)
-                file_put_contents(ROOT_PATH . '.env', $envKey . '=' . $envValue . "\n", FILE_APPEND | LOCK_EX);
-            return true;
-        }
-        else if ($key === false && $value === false)
-            return $envArray;
-    }
