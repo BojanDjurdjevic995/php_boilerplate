@@ -7,9 +7,7 @@
     "illuminate/support": "5.8.*",
     "illuminate/database" : "5.8.*",
     "phpoption/phpoption": "^1.7@dev",
-    "vlucas/phpdotenv": "3.6.*",
-    "illuminate/pagination": "5.8.x-dev",
-    "illuminate/routing" : "5.8.*"
+    "vlucas/phpdotenv": "3.6.*"
   },
   "autoload": {
     "psr-4": {

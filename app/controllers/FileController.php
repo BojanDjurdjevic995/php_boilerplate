@@ -61,8 +61,12 @@ class FileController
      * @param $path
      * @return bool
      */
-    public function upload($tmpName, $path)
+    public function upload($tmpName, $path, $name)
     {
+        if (!file_exists($path))
+            mkdir($path,0777);
+        $path .= '/' . $name;
+
         return move_uploaded_file($tmpName, $path) ? true : false;
     }
 
@@ -73,6 +77,8 @@ class FileController
      */
     public static function hasFile($file)
     {
-         return $_FILES[$file]['size'] ? true : false;
+        if (isset($_FILES[$file]))
+            return $_FILES[$file]['size'] ? true : false;
+        return false;
     }
 }
