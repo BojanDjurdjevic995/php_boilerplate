@@ -31,9 +31,11 @@ class Session
      * @param $session
      * @return mixed
      */
-    public static function get($session)
+    public static function get($session = false)
     {
-        return isset($_SESSION[$session]) ? $_SESSION[$session] : NULL;
+        if ($session)
+            return self::exists($session) ? $_SESSION[$session] : NULL;
+        return $_SESSION;
     }
 
     /**

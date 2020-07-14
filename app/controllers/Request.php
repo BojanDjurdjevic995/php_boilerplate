@@ -4,6 +4,11 @@ class Request
 {
     protected $data;
 
+    public function __construct()
+    {
+        $this->__get();
+    }
+
     public function __get($varName = false)
     {
         $this->data = (object) [];
@@ -14,7 +19,9 @@ class Request
             foreach ($_GET as $key => $get)
                 $this->data->{$key} = json_decode(json_encode($get));
 
-        return $varName ? (isset($this->data->{$varName}) ? $this->data->{$varName} : NULL) : ($this->data);
+        if ($varName)
+            return isset($this->data->{$varName}) ? $this->data->{$varName} : NULL;
+        return $this->data;
     }
 
     /**
@@ -34,17 +41,5 @@ class Request
     public static function isAjax()
     {
         return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') ? true : false;
-    }
-
-    public function __debugInfo()
-    {
-        $info = [];
-        if (self::isMethod('POST'))
-            foreach ($_POST as $key => $post)
-                $info[$key] = $post;
-            else
-                foreach ($_GET as $key2 => $get)
-                    $info[$key2] = $get;
-        return $info;
     }
 }

@@ -1,5 +1,8 @@
 <?php
-    use Illuminate\Container\Container;
+    use App\Controllers\Request;
+    use App\Controllers\Redirect;
+    use App\Controllers\Session;
+
     function timeStamp()
     {
         return date('Y-m-d H:i:s');
@@ -25,4 +28,30 @@
 
         $baseUrl = $actual_link . $requestUri;
         return $baseUrl . $item;
+    }
+
+    if (!function_exists('request')) {
+        function request(){
+            $r = new Request();
+            return $r;
+        }
+    }
+
+    if (!function_exists('redirect')) {
+        function redirect($to = '/', $query = array()){
+            Redirect::to($to, $query);
+        }
+    }
+
+    if (!function_exists('session')) {
+        function session($name = false, $value = false, $destroy = false){
+            if ($name !== false && $value !== false && !$destroy)
+                return Session::set($name, $value);
+            else if ($name !== false && $value === false && !$destroy)
+                return Session::get($name);
+            else if ($name === false && $value === false && !$destroy)
+                return Session::get();
+            if ($destroy)
+                return Session::destroy($destroy);
+        }
     }
