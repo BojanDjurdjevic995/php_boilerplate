@@ -14,20 +14,22 @@
         include ROOT_PATH . 'includes/' . $file . '.php';
     }
 
-    function asset($item = '')
-    {
-        $root = array_filter(explode('/', str_replace('\\', '/', ROOT_PATH)));
-        $lastItem = end($root);
-        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-        $requestUri = array_filter(explode('/', $_SERVER['REQUEST_URI']));
-        $requestUriKey = array_search($lastItem, $requestUri) + 1;
-        for ($i = $requestUriKey; $i <= count($requestUri); $i++)
-            $requestUri[$i] = '';
-        $requestUri = array_filter($requestUri);
-        $requestUri =  !empty($requestUri) ? implode('/', $requestUri) . '/' : '';
+    if (!function_exists('asset')) {
+        function asset($item = '')
+        {
+            $root = array_filter(explode('/', str_replace('\\', '/', ROOT_PATH)));
+            $lastItem = end($root);
+            $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+            $requestUri = array_filter(explode('/', $_SERVER['REQUEST_URI']));
+            $requestUriKey = array_search($lastItem, $requestUri) + 1;
+            for ($i = $requestUriKey; $i <= count($requestUri); $i++)
+                $requestUri[$i] = '';
+            $requestUri = array_filter($requestUri);
+            $requestUri =  !empty($requestUri) ? implode('/', $requestUri) . '/' : '';
 
-        $baseUrl = $actual_link . $requestUri;
-        return $baseUrl . $item;
+            $baseUrl = $actual_link . $requestUri;
+            return $baseUrl . $item;
+        }
     }
 
     if (!function_exists('request')) {
@@ -44,7 +46,7 @@
     }
 
     if (!function_exists('session')) {
-        function session($name = false, $value = false, $destroy = false){
+        function session($name = false, $value = false, $destroy = false) {
             if ($name !== false && $value !== false && !$destroy)
                 return Session::set($name, $value);
             else if ($name !== false && $value === false && !$destroy)
