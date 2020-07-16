@@ -6,7 +6,7 @@ use Illuminate\Database\MySqlConnection;
 
 trait ConnectionHelper
 {
-    public function getConnection($connection = 'mysqlf')
+    public function getConnection($connection = 'mysql')
     {
         $connection = isset($this->conn) ? $this->conn : $connection;
         $DB      = include ROOT_PATH . 'config/database.php';
