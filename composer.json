@@ -1,5 +1,5 @@
 {
-  "name" : "php core template",
+  "name" : "baki/php_template",
   "type": "project",
   "description": "Php project with laravel eloquent",
   "minimum-stability": "dev",
