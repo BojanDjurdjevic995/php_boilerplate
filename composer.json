@@ -2,7 +2,7 @@
   "name" : "baki/php_template",
   "type": "project",
   "description": "Php project with laravel eloquent",
-  "minimum-stability": "^1.0",
+  "minimum-stability": "dev",
   "license": "MIT",
   "keywords": ["template", "boilerplate", "php"],
   "require": {
