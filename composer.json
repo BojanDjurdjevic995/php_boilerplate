@@ -4,6 +4,7 @@
   "description": "Php project with laravel eloquent",
   "minimum-stability": "dev",
   "license": "MIT",
+  "version": "1.0.0",
   "keywords": ["template", "boilerplate", "php"],
   "require": {
     "php": "^7.1.3",
