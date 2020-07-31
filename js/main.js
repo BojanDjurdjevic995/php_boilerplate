@@ -1,5 +1,21 @@
 $(document).ready(function(){
     var page = $('meta[name="page"]').attr('content');
+    $('#test').on('submit', function (e) {
+        e.preventDefault();
+        var data = getNamesAndValues('test');
+        data['_token'] = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            cache       : false,
+            method      : 'POST',
+            url         : '../ajax/test.php',
+            dataType    : 'JSON',
+            data        : data,
+            success: function(response)
+            {
+                console.log(response);
+            }
+        });
+    });
 });
 function crreateTable(table)
 {
@@ -138,4 +154,39 @@ function generateQueryParameters() {
 
     var query = 'page=' + page;
     window.history.replaceState({query : query}, '', '?'+query);
+}
+function getNamesAndValues(idForm)
+{
+    let data = [];
+    document.querySelectorAll('#' + idForm).forEach(f => {
+        let obj = {};
+        let checkbox = [];
+        let checkboxLaterName = '';
+        f.querySelectorAll("input,select,textarea").forEach(ele => obj[ele.name] = null);
+        data.push(obj)
+        data = data[0];
+        obj = {};
+        checkbox = [];
+        f.querySelectorAll("input,select,textarea").forEach(function (e) {
+            if (e.type == 'checkbox') {
+                if (e.checked){
+                    if (checkboxLaterName !== e.name) {
+                        checkbox = [];
+                        checkboxLaterName = e.name;
+                    }
+                    checkbox.push(e.value)
+                    data[e.name] = checkbox;
+                }
+            } else if (e.type == 'radio') {
+                if (e.checked) {
+                    data[e.name] = e.value;
+                }
+            }
+            else {
+                data[e.name] = e.value
+            }
+        });
+
+    });
+    return data;
 }
