@@ -78,3 +78,10 @@
             return '<meta name="csrf-token" content="'.csrf_token().'">';
         }
     }
+
+    if (!function_exists('responseJSON')) {
+        function responseJSON($data = array()) {
+            echo json_encode($data);
+            exit();
+        }
+    }

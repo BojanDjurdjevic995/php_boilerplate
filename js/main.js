@@ -17,8 +17,7 @@ $(document).ready(function(){
         });
     });
 });
-function crreateTable(table)
-{
+function crreateTable(table) {
     loaderFunction();
     $('#'+table).DataTable({
         "processing": false,
@@ -55,6 +54,10 @@ function crreateTable(table)
         ]
     });
 }
+/**
+ * Table styling
+ * @param table
+ */
 function styleDatatables(table) {
     $('select[name="'+table+'_length"]').addClass('form-control').css({'margin-left' : '10px', 'margin-right' : '10px'});
     $('#'+table+'_info').addClass('alert').addClass('alert-primary');
@@ -64,6 +67,10 @@ function styleDatatables(table) {
     $('#'+table+'_length label').addClass('d-flex justify-content-center align-items-center')
     $('#'+table+'_wrapper').addClass('mt-4')
 }
+/**
+ * Turning the loader on and off
+ * @param on
+ */
 function loaderFunction(on = true) {
     if ($('#container-main').length === 0) {
         var loader = '<div id="container-main"><div class="loader"></div><p>Please wait!</p></div>';
@@ -77,8 +84,12 @@ function loaderFunction(on = true) {
         $('body').css('overflow', 'unset');
     }
 }
+/**
+ * Stop form and display message
+ * @param form
+ */
 function stoppedForm(form) {
-    $('.' + form).submit(function(e)
+    $(form).submit(function(e)
     {
         e.preventDefault();
         t=$(this);
@@ -102,41 +113,10 @@ function stoppedForm(form) {
         });
     });
 }
-var searchTimer2; var deleteTimerShowInfo;
-function showInfo(order_id) {
-    deleteTimerShowInfo = true;
-    clearTimeout(searchTimer2);
-    function showInfo2(order_id)
-    {
-        $.ajax({
-            cache: false,
-            url: '../ajax/getInfo.php',
-            data: {order_id:order_id},
-            dataType:'JSON',
-            method:'POST',
-            success:function (response)
-            {
-                if (response)
-                {
-                    var html = '<p><b>Name and surname:</b> ' + response['name'] + ' ' + response['surname'] + '</p>';
-                    html += '<p><b>Customer mail:</b> ' + response['customerMail'] + '</p>';
-                }
-                $('.infoDivShow-'+order_id).html(html);
-                showInfoDiv(order_id, 1);
-            }
-        });
-    }
-    searchTimer2 = setTimeout(function () {
-        if (deleteTimerShowInfo)
-            showInfo2(order_id);
-    }, 600);
-}
-function showInfoDiv(order_id, type) {
-    deleteTimerShowInfo = type == 1 ? true : false;
-    var allDivs = $('.infoAll');
-    var oneDiv = $('.infoDivShow-' + order_id);
-    type == 1 ? oneDiv.css('display', 'block') : allDivs.css('display', 'none');
-}
+/**
+ * Display a stylized message
+ * @param msg
+ */
 function alertMsg(msg) {
     $.confirm({
         title: '',
@@ -155,8 +135,10 @@ function generateQueryParameters() {
     var query = 'page=' + page;
     window.history.replaceState({query : query}, '', '?'+query);
 }
-function getNamesAndValues(idForm)
-{
+/**
+ * Creating query parameters
+ */
+function getNamesAndValues(idForm) {
     let data = [];
     document.querySelectorAll('#' + idForm).forEach(f => {
         let obj = {};

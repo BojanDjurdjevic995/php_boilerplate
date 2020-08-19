@@ -10,7 +10,6 @@ class Redirect
 
         $url = ($location == '/') ? ('Location: '. asset()) : ('Location: '. asset() . $location .'.php');
         $url .= empty($query) ? '' : '?' . Arr::query($query);
-        dd($url);
         header($url);
         exit();
     }
