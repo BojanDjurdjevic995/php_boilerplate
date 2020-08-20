@@ -3,7 +3,6 @@ $(document).ready(function(){
     $('#test').on('submit', function (e) {
         e.preventDefault();
         var data = getNamesAndValues('test');
-        data['_token'] = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             cache       : false,
             method      : 'POST',

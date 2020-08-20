@@ -11,6 +11,8 @@
     "nesbot/carbon": "2.36.1",
     "illuminate/support": "5.8.*",
     "illuminate/database" : "5.8.*",
+    "illuminate/validation" : "5.8.*",
+    "illuminate/http" : "5.8.*",
     "phpoption/phpoption": "^1.7@dev",
     "vlucas/phpdotenv": "3.6.*"
   },

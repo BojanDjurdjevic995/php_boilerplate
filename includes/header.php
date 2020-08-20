@@ -36,7 +36,7 @@ $page = end($page);
                 <a class="nav-link statsSubMenuActive" href="javascript:void(0)">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link settingsSubMenuActive" href="javascript:void(0)">Settings <span class="sr-only">(current)</span></a>
+                <a class="nav-link settingsSubMenuActive" href="<?= asset('test-ipsum.php') ?>">Test ipsum <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>

@@ -1,8 +1,8 @@
 <?php
-    use App\Controllers\Request;
     use App\Controllers\Redirect;
     use App\Controllers\Session;
     use Illuminate\Support\Str;
+    use Illuminate\Http\Request;
 
     function timeStamp()
     {
@@ -35,7 +35,7 @@
 
     if (!function_exists('request')) {
         function request(){
-            $r = new Request();
+            $r = new Request($_GET, $_POST, [], $_COOKIE, $_FILES, $_SERVER);
             return $r;
         }
     }
