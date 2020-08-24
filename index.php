@@ -1,5 +1,6 @@
 <?php
 require_once './config/config.php';
+use Baki\LoremIpsum\LoremIpsum;
 __include('header', ['title' => 'Home']);
 $datas = (object) [
         'Year' => (object) ['type' => 'radio', 'name' => 'year', 'data' => ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']],
@@ -18,7 +19,7 @@ $datas = (object) [
                 <label>Surname</label>
                 <input class="form-control" type="text" name="surname" value="Djurdjevic Baki">
                 <label>Comment</label>
-                <textarea class="form-control" name="comment" cols="30" rows="10"><?= Lipsum::html() ?></textarea>
+                <textarea class="form-control" name="comment" cols="30" rows="10"><?= LoremIpsum::sort()->count(2)->text()->generate(); ?></textarea>
             </div>
             <div class="row">
                 <?php foreach ($datas as $key => $value) { ?>
