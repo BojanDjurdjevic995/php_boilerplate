@@ -7,7 +7,7 @@ $datas = (object) [
         'Skills' => (object) ['type' => 'checkbox', 'name' => 'skills', 'data' => ['HTML', 'CSS', 'PHP', 'LARAVEL', 'JavaScript', '.NET', 'Angular', 'React', 'Symfony']],
         'Must have' => (object) ['type' => 'checkbox', 'name' => 'mustHave', 'data' => ['Money', 'Car', 'Smart phone', 'Tablet', 'Computer', 'Job', 'Girlfriend', 'House']],
         'Favorite name' => (object) ['type' => 'checkbox', 'name' => 'favoriteName', 'data' => ['Bojan', 'Dejan', 'Nenad', 'Nikola', 'Maja', 'Mirko', 'Nikolina', 'Dajana']]
-]
+];
 ?>
     <div class="container mt-3 d-flex flex-wrap">
         <form action="" id="test" method="post">
