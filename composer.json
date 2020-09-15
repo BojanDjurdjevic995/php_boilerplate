@@ -1,5 +1,5 @@
 {
-  "name" : "baki/php_template",
+  "name" : "baki/php_boilerplate",
   "type": "project",
   "description": "Php project with laravel eloquent",
   "minimum-stability": "dev",
@@ -11,12 +11,13 @@
     "nesbot/carbon": "2.36.1",
     "illuminate/database" : "5.8.*",
     "illuminate/http" : "5.8.*",
-    "vlucas/phpdotenv": "3.6.*",
-    "baki/loremipsum": "dev-master"
+    "vlucas/phpdotenv": "3.6.*"
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app/"
+      "App\\Controllers\\": "app/controllers/",
+      "App\\Models\\": "app/models/",
+      "App\\Traits\\": "app/traits/"
     },
     "files": ["helper/helpers.php"]
   }

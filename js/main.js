@@ -2,13 +2,13 @@ $(document).ready(function(){
     var page = $('meta[name="page"]').attr('content');
     $('#test').on('submit', function (e) {
         e.preventDefault();
-        var data = getNamesAndValues('test');
+        var data = getNamesAndValues($(this));
         $.ajax({
             cache       : false,
             method      : 'POST',
             url         : '../ajax/test.php',
-            dataType    : 'JSON',
             data        : data,
+            dataType    : 'JSON',
             success: function(response)
             {
                 console.log(response);
@@ -53,6 +53,7 @@ function crreateTable(table) {
         ]
     });
 }
+
 /**
  * Table styling
  * @param table
@@ -66,6 +67,7 @@ function styleDatatables(table) {
     $('#'+table+'_length label').addClass('d-flex justify-content-center align-items-center')
     $('#'+table+'_wrapper').addClass('mt-4')
 }
+
 /**
  * Turning the loader on and off
  * @param on
@@ -83,6 +85,7 @@ function loaderFunction(on = true) {
         $('body').css('overflow', 'unset');
     }
 }
+
 /**
  * Stop form and display message
  * @param form
@@ -112,6 +115,7 @@ function stoppedForm(form) {
         });
     });
 }
+
 /**
  * Display a stylized message
  * @param msg
@@ -128,46 +132,43 @@ function alertMsg(msg) {
         }
     });
 }
+
+/**
+ * Generate query parameters
+ */
 function generateQueryParameters() {
     var page     = $('meta[name="page"]').attr('content');
 
     var query = 'page=' + page;
     window.history.replaceState({query : query}, '', '?'+query);
 }
+
 /**
  * Creating query parameters
  */
-function getNamesAndValues(idForm) {
+function getNamesAndValues(form) {
     let data = [];
-    document.querySelectorAll('#' + idForm).forEach(f => {
-        let obj = {};
-        let checkbox = [];
-        let checkboxLaterName = '';
-        f.querySelectorAll("input,select,textarea").forEach(ele => obj[ele.name] = null);
-        data.push(obj)
-        data = data[0];
-        obj = {};
-        checkbox = [];
-        f.querySelectorAll("input,select,textarea").forEach(function (e) {
-            if (e.type == 'checkbox') {
-                if (e.checked){
-                    if (checkboxLaterName !== e.name) {
-                        checkbox = [];
-                        checkboxLaterName = e.name;
-                    }
-                    checkbox.push(e.value)
-                    data[e.name] = checkbox;
-                }
-            } else if (e.type == 'radio') {
-                if (e.checked) {
-                    data[e.name] = e.value;
-                }
-            }
-            else {
-                data[e.name] = e.value
-            }
-        });
+    var dataForm = form.serializeArray();
 
+    dataForm.forEach(function(item) {
+        var existing = data.filter(function(v, i) {
+            return v.name == item.name;
+        });
+        if (existing.length) {
+            var existingIndex = data.indexOf(existing[0]);
+            if (typeof data[existingIndex].value == 'string')
+            {
+                var tmp = []
+                tmp.push(data[existingIndex].value);
+                tmp.push(item.value);
+                data[existingIndex].value = [];
+                data[existingIndex].value = tmp;
+            } else {
+                data[existingIndex].value.push(item.value)
+            }
+        } else {
+            data.push(item);
+        }
     });
     return data;
 }

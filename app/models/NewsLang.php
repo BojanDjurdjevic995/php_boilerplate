@@ -27,6 +27,6 @@ class NewsLang extends Model
      */
     public function getTrimContentAttribute()
     {
-        return Str::limit(strip_tags($this->content), 20);
+        return Str::limit(strip_tags($this->content), 23);
     }
 }

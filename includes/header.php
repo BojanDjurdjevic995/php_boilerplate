@@ -1,6 +1,6 @@
 <?php
 $page = explode('/', $_SERVER['SCRIPT_NAME']);
-$page = end($page);
+$page = explode('.', end($page))[0];
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,19 +9,17 @@ $page = end($page);
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <?= csrf_meta(); ?>
-
     <title><?= $title ?: 'Title' ?></title>
 
 <!--    <link rel="apple-touch-icon" sizes="180x180" href="#">-->
 <!--    <link rel="icon" type="image/png" sizes="32x32" href="#">-->
 <!--    <link rel="icon" type="image/png" sizes="16x16" href="#">-->
 
-    <link rel="stylesheet" href="<?= asset('css/bootstrap-datatabkes-jqueryconfirm-fontawesome.min.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/bootstrap-dtables-$confirm-awesome.min.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/main.css') ?>">
 
 
-    <meta name="page" content="<?= explode('.', $page)[0] ?>">
+    <meta name="page" content="<?= $page ?>">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -34,9 +32,6 @@ $page = end($page);
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
                 <a class="nav-link statsSubMenuActive" href="javascript:void(0)">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link settingsSubMenuActive" href="<?= asset('test-ipsum.php') ?>">Test ipsum <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>

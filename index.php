@@ -1,6 +1,5 @@
 <?php
 require_once './config/config.php';
-use Baki\LoremIpsum\LoremIpsum;
 __include('header', ['title' => 'Home']);
 $datas = (object) [
         'Year' => (object) ['type' => 'radio', 'name' => 'year', 'data' => ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']],
@@ -19,7 +18,7 @@ $datas = (object) [
                 <label>Surname</label>
                 <input class="form-control" type="text" name="surname" value="Djurdjevic Baki">
                 <label>Comment</label>
-                <textarea class="form-control" name="comment" cols="30" rows="10"><?= LoremIpsum::sort()->count(2)->text()->generate(); ?></textarea>
+                <textarea class="form-control" name="comment" cols="30" rows="10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</textarea>
             </div>
             <div class="row">
                 <?php foreach ($datas as $key => $value) { ?>
@@ -34,7 +33,7 @@ $datas = (object) [
                     </div>
                 <?php } ?>
             </div>
-            <button class="btn btn-primary">Save</button>
+            <button class="btn btn-primary">Save </button>
         </form>
     </div>
 <?php
