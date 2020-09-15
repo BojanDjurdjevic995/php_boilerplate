@@ -4,6 +4,7 @@
   "description": "Php project with laravel eloquent",
   "minimum-stability": "dev",
   "prefer-stable": true,
+  "version": "dev-master",
   "license": "MIT",
   "keywords": ["template", "boilerplate", "php"],
   "repository": {
