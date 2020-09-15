@@ -3,7 +3,6 @@
   "type": "project",
   "description": "Php project with laravel eloquent",
   "minimum-stability": "dev",
-  "prefer-stable" : true,
   "license": "MIT",
   "keywords": ["template", "boilerplate", "php"],
   "require": {
@@ -24,7 +23,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "*"
+      "dev-master": "dev-master"
     }
   }
 }
