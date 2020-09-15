@@ -21,5 +21,10 @@
       "App\\Traits\\": "app/traits/"
     },
     "files": ["helper/helpers.php"]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "*"
+    }
   }
 }
