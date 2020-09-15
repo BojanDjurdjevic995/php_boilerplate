@@ -6,7 +6,7 @@ $(document).ready(function(){
         $.ajax({
             cache       : false,
             method      : 'POST',
-            url         : '../ajax/test.php',
+            url         : './ajax/test.php',
             data        : data,
             dataType    : 'JSON',
             success: function(response)
