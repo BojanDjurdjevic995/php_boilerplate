@@ -2,7 +2,7 @@
   "name" : "baki/php_boilerplate",
   "type": "project",
   "description": "Php project with laravel eloquent",
-  "minimum-stability": "dev",
+  "minimum-stability": "dev-master",
   "license": "MIT",
   "keywords": ["template", "boilerplate", "php"],
   "require": {
