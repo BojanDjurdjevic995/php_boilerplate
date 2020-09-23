@@ -1,8 +1,10 @@
 <?php
     use App\Controllers\Redirect;
     use App\Controllers\Session;
+    use Illuminate\Routing\UrlGenerator;
     use Illuminate\Support\Str;
     use Illuminate\Http\Request;
+
 
     function timeStamp()
     {
@@ -83,5 +85,13 @@
         function responseJSON($data = array()) {
             echo json_encode($data);
             exit();
+        }
+    }
+
+    if (!function_exists('route')) {
+        function route($name, $parameters = [], $absolute = true) {
+
+            $uri = new UrlGenerator($_ENV['routes'], request());
+            return $uri->route($name, $parameters, $absolute);
         }
     }

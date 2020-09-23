@@ -1,5 +1,6 @@
 $(document).ready(function(){
     var page = $('meta[name="page"]').attr('content');
+    var _token = $('meta[name="csrf-token"]').attr('content');
     $('#test').on('submit', function (e) {
         e.preventDefault();
         var data = getNamesAndValues($(this));
@@ -16,7 +17,7 @@ $(document).ready(function(){
         });
     });
 });
-function crreateTable(table) {
+function crreateTable(table, token) {
     loaderFunction();
     $('#'+table).DataTable({
         "processing": false,
@@ -35,21 +36,44 @@ function crreateTable(table) {
             method: "POST",
             dataType: 'JSON',
             url: './ajax/getNews.php',
+            data : {_token : token}
         },
         "fnDrawCallback": function () {
             $('#'+table).removeClass('dataTable').addClass('table-dark');
             styleDatatables(table);
             loaderFunction(false);
         },
+        "footerCallback": function ( row, data) {
+            var api = this.api();
+            for (let i = 1; i < Object.keys(data[0]).length; i++)
+            {
+                var header = $( api.column( i ).header() ).html();
+                var response = 0;
+                if (header == 'title' || header == 'lang')
+                {
+                    data.forEach(function (value){
+                        response += value[header];
+                    });
+                } else {
+                    var br; var avg = 0;
+                    data.forEach(function (value, key){
+                        br = key;
+                        avg += value[header];
+                    });
+                    br++;
+                    response = Math.ceil(avg / br);
+                }
+                $( api.column( i ).footer() ).html(response);
+            }
+
+            console.log(row);
+            console.log(data);
+        },
         "columns": [
             {"data": "id"},
             {"data": "title"},
-            {"data": "content"},
             {"data": "slug"},
-            {"data": "link"},
             {"data": "lang"},
-            {"data": "visibility"},
-            {"data": "created_at"},
         ]
     });
 }

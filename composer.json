@@ -12,7 +12,8 @@
     "nesbot/carbon": "2.36.1",
     "illuminate/database" : "5.8.*",
     "illuminate/http" : "5.8.*",
-    "vlucas/phpdotenv": "3.6.*"
+    "vlucas/phpdotenv": "3.6.*",
+    "illuminate/routing": "5.8.*"
   },
   "autoload": {
     "psr-4": {
