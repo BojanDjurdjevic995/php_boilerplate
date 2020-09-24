@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controllers;
+namespace App\Providers;
 
 
 use Illuminate\Contracts\Events\Dispatcher as MainDispatcher;
@@ -51,7 +51,7 @@ class Dispatcher implements MainDispatcher
      */
     public function until($event, $payload = [])
     {
-        //
+        return $this->dispatch($event, $payload, true);
     }
 
     /**
@@ -70,7 +70,6 @@ class Dispatcher implements MainDispatcher
     /**
      * Register an event and payload to be fired later.
      *
-     * @param  string  $event
      * @param  array  $payload
      * @return void
      */

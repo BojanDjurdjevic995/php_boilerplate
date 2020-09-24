@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controllers;
+namespace App\Providers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\RouteCollection as MainRouteCollection;

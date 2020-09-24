@@ -3,10 +3,6 @@
 
 namespace App\Controllers;
 
-
-use App\Models\News;
-use Illuminate\Http\Request;
-
 class NewsController
 {
     public function index()
@@ -16,7 +12,6 @@ class NewsController
 
     public function show($news)
     {
-        $news = News::whereId($news)->with('children')->first();
         dd($news);
     }
 
@@ -25,14 +20,14 @@ class NewsController
         echo 'create';
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        dd($request, $_REQUEST);
+        dd($_REQUEST);
     }
 
-    public function edit()
+    public function edit($news)
     {
-        echo 'edit';
+        dd($news);
     }
 
     public function update()

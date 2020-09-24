@@ -30,8 +30,14 @@ $page = explode('.', end($page))[0];
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link statsSubMenuActive" href="javascript:void(0)">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item <?= is_route('home') ? 'active' : '' ?>">
+                <a class="nav-link statsSubMenuActive" href="<?= route('home') ?>">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item <?= is_route('about') ? 'active' : '' ?>">
+                <a class="nav-link statsSubMenuActive" href="<?= route('about') ?>">About <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item <?= is_route('form') ? 'active' : '' ?>">
+                <a class="nav-link statsSubMenuActive" href="<?= route('form') ?>">Form <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>

@@ -1,11 +1,9 @@
 <?php
 
 
-namespace App\Controllers;
-
+namespace App\Providers;
 
 use Illuminate\Routing\Router as MainRouter;
-
 
 class Router extends MainRouter
 {

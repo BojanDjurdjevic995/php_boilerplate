@@ -19,7 +19,8 @@
     "psr-4": {
       "App\\Controllers\\": "app/controllers/",
       "App\\Models\\": "app/models/",
-      "App\\Traits\\": "app/traits/"
+      "App\\Traits\\": "app/traits/",
+      "App\\Providers\\": "app/providers/"
     },
     "files": ["helper/helpers.php"]
   }

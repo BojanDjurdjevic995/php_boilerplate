@@ -1,10 +1,10 @@
 <?php
-    use App\Controllers\Redirect;
-    use App\Controllers\Session;
-    use Illuminate\Routing\UrlGenerator;
+    use App\Providers\Route;
     use Illuminate\Support\Str;
+    use App\Controllers\Session;
     use Illuminate\Http\Request;
-
+    use App\Controllers\Redirect;
+    use Illuminate\Routing\UrlGenerator;
 
     function timeStamp()
     {
@@ -90,8 +90,24 @@
 
     if (!function_exists('route')) {
         function route($name, $parameters = [], $absolute = true) {
-
             $uri = new UrlGenerator($_ENV['routes'], request());
             return $uri->route($name, $parameters, $absolute);
+        }
+    }
+
+    if (!function_exists('is_route')) {
+        function is_route($name = '') {
+            return Route::currentRouteName() == $name ? true : false;
+        }
+    }
+
+    if (!function_exists('view')) {
+        function view($view, $parameters = []) {
+            foreach ($parameters as $key => $value)
+                if ($key != 'view')
+                    $$key = $value;
+                else throw new Exception('Cannot call variable as view', 301);
+            include_once VIEW_PATH . $view . '.php';
+            exit();
         }
     }
