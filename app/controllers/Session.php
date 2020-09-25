@@ -9,7 +9,7 @@ class Session
      * @param $session
      * @return bool
      */
-    public static function exists($session)
+    public static function has($session)
     {
         return (isset($_SESSION[$session])) ? true : false;
     }
@@ -34,7 +34,7 @@ class Session
     public static function get($session = false)
     {
         if ($session)
-            return self::exists($session) ? $_SESSION[$session] : NULL;
+            return self::has($session) ? $_SESSION[$session] : NULL;
         return $_SESSION;
     }
 

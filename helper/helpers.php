@@ -3,7 +3,7 @@
     use Illuminate\Support\Str;
     use App\Controllers\Session;
     use Illuminate\Http\Request;
-    use App\Controllers\Redirect;
+    use App\Controllers\Redirector;
     use Illuminate\Routing\UrlGenerator;
 
     function timeStamp()
@@ -43,8 +43,9 @@
     }
 
     if (!function_exists('redirect')) {
-        function redirect($to = '/', $query = array()){
-            Redirect::to($to, $query);
+        function redirect(){
+            $redirect = new Redirector();
+            return $redirect;
         }
     }
 
