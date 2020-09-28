@@ -13,7 +13,8 @@
     "illuminate/database" : "5.8.*",
     "illuminate/http" : "5.8.*",
     "vlucas/phpdotenv": "3.6.*",
-    "illuminate/routing": "5.8.*"
+    "illuminate/routing": "5.8.*",
+    "illuminate/pagination" : "5.8.*"
   },
   "autoload": {
     "psr-4": {

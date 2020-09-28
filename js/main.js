@@ -89,7 +89,7 @@ function styleDatatables(table) {
     $('#'+table+'_filter label input').attr('Placeholder', 'Enter something...');
     $('input[type="search"]').addClass('form-control');
     $('#'+table+'_length label').addClass('d-flex justify-content-center align-items-center')
-    $('#'+table+'_wrapper').addClass('mt-4')
+    $('#'+table+'_wrapper').addClass('mt-4');
 }
 
 /**
