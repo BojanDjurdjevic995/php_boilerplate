@@ -20,7 +20,8 @@
       "App\\Controllers\\": "app/controllers/",
       "App\\Models\\": "app/models/",
       "App\\Traits\\": "app/traits/",
-      "App\\Providers\\": "app/providers/"
+      "App\\Providers\\": "app/providers/",
+      "App\\Middleware\\": "app/middleware/"
     },
     "files": ["helper/helpers.php"]
   }

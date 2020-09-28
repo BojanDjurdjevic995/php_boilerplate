@@ -7,6 +7,23 @@ use App\Providers\Route;
  */
 Route::start();
 
+Route::get('home', function (){
+    return redirect()->route('bakidzola')->send();
+});
+Route::match(['GET', 'POST'], 'login', 'App\Controllers\Auth\LoginController@login')->name('login');
+Route::post('logout', 'App\Controllers\Auth\LoginController@logout')->name('logout');
+Route::prefix('admin')->group(function () {
+    Route::group(['middleware' => 'App\Middleware\Authenticate'], function()
+    {
+        Route::get('bakidzola', function (){
+            return view('bakidzola');
+        })->name('bakidzola');
+        Route::get('mirko', function (){
+            dd('Opaaaaaaa');
+        })->name('mirko');
+    });
+});
+
 /**
  * this group of methods defines the routes for the required uri
  */
@@ -15,7 +32,9 @@ Route::get('about', 'App\Controllers\IndexController@about')->name('about');
 Route::get('single-news/{slug}/{id}', 'App\Controllers\IndexController@singleNews')->name('singleNews');
 Route::match(['GET', 'POST'], 'form', 'App\Controllers\IndexController@form')->name('form');
 Route::resource('news', 'App\Controllers\NewsController');
-
+Route::get('test', function (){
+    return redirect()->route('home')->send();
+});
 /**
  * This method starts the router
  */
