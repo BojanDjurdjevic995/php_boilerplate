@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use App\Traits\ConnectionHelper;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 

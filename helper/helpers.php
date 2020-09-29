@@ -5,6 +5,7 @@
     use Illuminate\Http\Request;
     use App\Controllers\Redirector;
     use Illuminate\Routing\UrlGenerator;
+    use Illuminate\Http\Response;
 
     function timeStamp()
     {
@@ -86,6 +87,13 @@
         function responseJSON($data = array()) {
             echo json_encode($data);
             exit();
+        }
+    }
+
+    if (!function_exists('response')) {
+        function response($data = array(), $status = 200) {
+            $r = Response::create($data, $status);
+            return $r;
         }
     }
 

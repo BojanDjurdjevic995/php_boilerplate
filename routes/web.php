@@ -32,9 +32,8 @@ Route::get('about', 'App\Controllers\IndexController@about')->name('about');
 Route::get('single-news/{slug}/{id}', 'App\Controllers\IndexController@singleNews')->name('singleNews');
 Route::match(['GET', 'POST'], 'form', 'App\Controllers\IndexController@form')->name('form');
 Route::resource('news', 'App\Controllers\NewsController');
-Route::get('test', function (){
-    return redirect()->route('home')->send();
-});
+
+Route::post('api/get-all-news', 'App\Controllers\IndexController@getAllNews');
 /**
  * This method starts the router
  */
