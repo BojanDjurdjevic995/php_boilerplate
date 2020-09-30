@@ -19,7 +19,7 @@ Route::prefix('admin')->group(function () {
             return view('bakidzola');
         })->name('bakidzola');
         Route::get('mirko', function (){
-            dd('Opaaaaaaa');
+            dd('Mirko');
         })->name('mirko');
     });
 });

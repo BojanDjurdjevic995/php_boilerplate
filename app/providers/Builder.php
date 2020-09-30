@@ -29,7 +29,7 @@ class Builder extends MainBuilder
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $request = \request();
-        $page = $page ?: $request->get('page');
+        $page = $page ?: $request->get($pageName, 1);
 
         $perPage = $perPage ?: $this->model->getPerPage();
 
