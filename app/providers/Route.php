@@ -3,6 +3,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Http\Request;
+
 class Route
 {
     protected static $router;
@@ -15,6 +17,8 @@ class Route
     public static function dispatch()
     {
         self::$router->getRoutes()->refreshNameLookups();
+        $route = self::$router->getRoutes()->match(\request());
+        self::$router->substituteImplicitBindings($route);
         $_ENV['routes'] = self::$router->getRoutes();
         self::$router->dispatch(request());
     }

@@ -6,6 +6,7 @@ namespace App\Providers;
 use App\Traits\BuildsQueries;
 use Illuminate\Database\Eloquent\Builder as MainBuilder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Http\Request;
 
 class Builder extends MainBuilder
 {

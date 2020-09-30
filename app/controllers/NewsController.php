@@ -3,6 +3,8 @@
 
 namespace App\Controllers;
 
+use App\Models\News;
+
 class NewsController
 {
     public function index()
@@ -25,7 +27,7 @@ class NewsController
         dd($_REQUEST);
     }
 
-    public function edit($news)
+    public function edit(News $news)
     {
         dd($news);
     }

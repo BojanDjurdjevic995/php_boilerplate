@@ -4,7 +4,9 @@
 namespace App\Providers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Routing\RouteCollection as MainRouteCollection;
+use Illuminate\Routing\RouteParameterBinder;
 use function Composer\Autoload\includeFile;
 
 class RouteCollection extends MainRouteCollection
@@ -20,6 +22,7 @@ class RouteCollection extends MainRouteCollection
      */
     public function match(Request $request)
     {
+
         $routes = $this->get($request->getMethod());
 
         // First, we will see if we can find a matching route for this current request
@@ -42,4 +45,5 @@ class RouteCollection extends MainRouteCollection
 
         includeFile('404.php'); die();
     }
+
 }
