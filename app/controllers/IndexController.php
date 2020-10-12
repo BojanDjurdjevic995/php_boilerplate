@@ -3,6 +3,7 @@
 
 namespace App\Controllers;
 
+use Baki\Uploader;
 use App\Models\News;
 use App\Models\NewsLang;
 use Illuminate\Http\Request;
@@ -44,10 +45,10 @@ class IndexController
 
     public function uploadFIle(Request $request)
     {
-        $slika = new Uploader($request, 'file', 1);
-        $slika->setMimeType('video/png', 'image/jpg', 'image/jpeg');
+        $slika = new Uploader($request, 'file');
+        $slika->setMimeType('image/png', 'image/jpg', 'image/jpeg');
         $slika->setFileMaxSize(20);
-        $slika->setSavePath(ROOT_PATH . 'slikice/');
+        $slika->setSavePath(base_path('slikice'));
         dd($slika->save());
     }
 }

@@ -15,13 +15,13 @@
     function __include($file, $options = array()){
         foreach ($options as $key => $option)
             ${$key} = $option;
-        include ROOT_PATH . 'includes/' . $file . '.php';
+        include base_path('includes/' . $file . '.php');
     }
 
     if (!function_exists('asset')) {
         function asset($item = '')
         {
-            $root = array_filter(explode('/', str_replace('\\', '/', ROOT_PATH)));
+            $root = array_filter(explode('/', str_replace('\\', '/', base_path())));
             $lastItem = end($root);
             $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
             $requestUri = array_filter(explode('/', $_SERVER['REQUEST_URI']));
@@ -33,6 +33,21 @@
 
             $baseUrl = $actual_link . $requestUri;
             return $baseUrl . $item;
+        }
+    }
+
+    if (!function_exists('base_path')) {
+        function base_path($item = '')
+        {
+            $root_path = dirname(__DIR__) . '/';
+            return $root_path . $item;
+        }
+    }
+
+    if (!function_exists('view_path')) {
+        function view_path($view = '')
+        {
+            return base_path('view/' . $view . '.php');
         }
     }
 
@@ -116,7 +131,7 @@
                 if ($key != 'view')
                     $$key = $value;
                 else throw new Exception('Cannot call variable as view', 301);
-            include_once VIEW_PATH . $view . '.php';
+            include_once view_path($view);
             exit();
         }
     }

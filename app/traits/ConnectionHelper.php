@@ -10,7 +10,7 @@ trait ConnectionHelper
     public function getConnection($connection = 'mysql')
     {
         $connection = isset($this->conn) ? $this->conn : $connection;
-        $DB      = include ROOT_PATH . 'config/database.php';
+        $DB      = include base_path('config/database.php');
         $DB      = $DB['connections'][$connection];
         $db      = $DB['database'];
         $user    = $DB['username'];
