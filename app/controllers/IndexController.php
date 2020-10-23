@@ -12,8 +12,7 @@ class IndexController
 {
     public function index()
     {
-        $news = NewsLang::select('id', 'slug', 'title')->get()->random(1);
-        return view('index', ['news' => $news[0]]);
+        return view('index');
     }
 
     public function form(Request $request)
@@ -45,7 +44,7 @@ class IndexController
 
     public function uploadFIle(Request $request)
     {
-        $slika = new Uploader($request, 'file');
+        $slika = new Uploader($request, 'banners', '_', 1);
         $slika->setMimeType('image/png', 'image/jpg', 'image/jpeg');
         $slika->setFileMaxSize(20);
         $slika->setSavePath(base_path('slikice'));
